@@ -95,5 +95,14 @@ dotnet restore
 git status
 git init
 git branch -m main
+dotnet new gitignore
+git remote add origin https://github.com/pg4devt/skinet7.git
+git push origin main
+```
 
+## Update database migrations
+```
+dotnet ef database drop -p Infrastructure -s API
+dotnet ef migrations remove -p Infrastructure -s API
+dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
 ```
