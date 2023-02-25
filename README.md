@@ -106,3 +106,24 @@ dotnet ef database drop -p Infrastructure -s API
 dotnet ef migrations remove -p Infrastructure -s API
 dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
 ```
+
+## Setting up Angular to use HTTPS
+
+- Go to https://github.com/FiloSottile/mkcert and follow instructions to install chocolatey
+- After installing chocolatey on powershell, install mkcert
+	```
+	choco install mkcert
+	```
+- On powershell, go to client/ssl/ and run the following commands to create self-signed certificates
+	```
+	mkcert -install
+	mkcert localhost
+	```	
+- Add properties on angular.json under "serve"
+	```
+	"options": {
+		"sslCert": "ssl/localhost.pem",
+		"sslKey": "ssl/localhost-key.pem",
+		"ssl": true
+	  }
+	```
